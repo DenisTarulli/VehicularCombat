@@ -11,6 +11,7 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private float groundcheckRayMaxDistance;
     [SerializeField] private GameObject[] leftWheels;
     [SerializeField] private GameObject[] rightWheels;
+    [SerializeField] private Vector3 boxSize;
 
     private Rigidbody rigidBody;
     private float moveInput;
@@ -89,7 +90,7 @@ public class TankMovement : MonoBehaviour
         if (IsGrounded()) return;
 
         StartCoroutine(nameof(RecoverCooldown));
-        transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+        transform.eulerAngles = new(0f, transform.eulerAngles.y, 0f);
     }
     
     private IEnumerator RecoverCooldown()
@@ -109,8 +110,7 @@ public class TankMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Ray ray = new(transform.position, -transform.up);
-        if (Physics.Raycast(ray, out _, groundcheckRayMaxDistance))
+        if (Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, groundcheckRayMaxDistance))
             return true;
         else
             return false;
