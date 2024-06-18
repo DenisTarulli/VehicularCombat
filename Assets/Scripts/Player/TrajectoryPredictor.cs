@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class TrajectoryPredictor : MonoBehaviour
 {
     #region Members
-    LineRenderer trajectoryLine;
+    private LineRenderer trajectoryLine;
     [SerializeField, Tooltip("The marker will show where the projectile will hit")]
-    Transform hitMarker;
+    private Transform hitMarker;
     [SerializeField, Range(10, 300), Tooltip("The maximum number of points the LineRenderer can have")]
-    int maxPoints = 50;
+    private int maxPoints = 50;
     [SerializeField, Range(0.01f, 0.5f), Tooltip("The time increment used to calculate the trajectory")]
-    float increment = 0.025f;
+    private float increment = 0.025f;
     [SerializeField, Range(1.05f, 2f), Tooltip("The raycast overlap between points in the trajectory, this is a multiplier of the length between points. 2 = twice as long")]
-    float rayOverlap = 1.1f;
+    private float rayOverlap = 1.1f;
     [SerializeField]
-    LayerMask hitLayer;
+    private LayerMask hitLayer;
     #endregion
 
     private void Start()
