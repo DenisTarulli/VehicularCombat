@@ -170,7 +170,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private int FindQuadrant(Vector3 vector)
+    public int FindQuadrant(Vector3 vector)
     {
         int quadrant;
 
