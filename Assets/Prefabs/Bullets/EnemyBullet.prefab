@@ -149,8 +149,8 @@ GameObject:
   - component: {fileID: 895193375815479498}
   - component: {fileID: 716623683012198621}
   m_Layer: 0
-  m_Name: PlayerBullet
-  m_TagString: Untagged
+  m_Name: EnemyBullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,7 +191,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &895193375815479498
 Rigidbody:
@@ -239,7 +239,7 @@ MonoBehaviour:
   radius: 12
   force: 700
   damage: 100
-  tagToIgnore: Player
+  tagToIgnore: Enemy
 --- !u!1 &9063777170357464003
 GameObject:
   m_ObjectHideFlags: 0

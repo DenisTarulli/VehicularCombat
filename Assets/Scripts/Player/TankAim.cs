@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class TankAim : MonoBehaviour
 {
+    #region Members
+    [Header("Stats")]
     [SerializeField] private float tiltSpeed;
     [SerializeField] private float maxTilt;
     [SerializeField] private float minTilt;
+    #endregion
 
     private void Update()
     {

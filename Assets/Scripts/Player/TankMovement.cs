@@ -3,20 +3,28 @@ using UnityEngine;
 
 public class TankMovement : MonoBehaviour
 {
+    #region Members
+    [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float wheelRotationSpeed;
-    [SerializeField] private float wheelTurnRotationSpeed;
     [SerializeField] private float recoveryCooldown;
-    [SerializeField] private float groundcheckRayMaxDistance;
+    private float rotationInput;
+    private float moveInput;
+    private bool canRecover;
+
+    [Header("Wheels")]
     [SerializeField] private GameObject[] leftWheels;
     [SerializeField] private GameObject[] rightWheels;
+    [SerializeField] private float wheelRotationSpeed;
+    [SerializeField] private float wheelTurnRotationSpeed;
+
+    [Header("Groundcheck")]
+    [SerializeField] private float groundcheckRayMaxDistance;
     [SerializeField] private Vector3 boxSize;
 
+    [Header("References")]
     private Rigidbody rigidBody;
-    private float moveInput;
-    private float rotationInput;
-    private bool canRecover;
+    #endregion
 
     private void Start()
     {

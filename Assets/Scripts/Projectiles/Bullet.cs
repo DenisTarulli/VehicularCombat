@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
 
         foreach (Collider nearbyObjects in colliders)
         {
-            if (nearbyObjects.TryGetComponent<Rigidbody>(out var rb))
+            if (nearbyObjects.TryGetComponent<Rigidbody>(out var rb) && !nearbyObjects.gameObject.CompareTag("Bullet"))
                 rb.AddExplosionForce(force, transform.position, radius);
         }
 

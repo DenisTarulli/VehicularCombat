@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    #region Members
+    [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float wheelRotationSpeed;
     [SerializeField] private float wheelTurnRotationSpeed;
-    [SerializeField] private float groundcheckRayMaxDistance;
+    private float enemyGasDirection;
+    private float rotationDirection;
+
+    [Header("AI Behaviour")]
     [SerializeField] private float turnThreshold;
     [SerializeField] private float chasingDistance;
     [SerializeField] private float idleDistance;
+
+    [Header("Wheels")]
     [SerializeField] private GameObject[] leftWheels;
     [SerializeField] private GameObject[] rightWheels;
+
+    [Header("Groundcheck")]
+    [SerializeField] private float groundcheckRayMaxDistance;
     [SerializeField] private Vector3 boxSize;
 
+    [Header("References")]
     private Transform player;
     private Rigidbody rigidBody;
     private EnemyState enemyState;
-    private float enemyGasDirection;
-    private float rotationDirection;
+    #endregion
 
     private void Start()
     {

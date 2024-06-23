@@ -3,19 +3,22 @@ using UnityEngine;
 [RequireComponent(typeof(TrajectoryPredictor))]
 public class ProjectileThrow : MonoBehaviour
 {
-    TrajectoryPredictor trajectoryPredictor;
-
-    [SerializeField] private Rigidbody objectToThrow;
-
+    #region Members
+    [Header("Physics")]
     [SerializeField, Range(40f, 50f)] private float maxForce;
     [SerializeField, Range(5f, 15f)] private float minForce;
     [SerializeField, Range(15f, 40f)] private float startingForce;
     private float force;
 
+    [Header("Shooting")]
     [SerializeField] private float fireRate;
     private float nextTimeToFire;
 
+    [Header("References")]
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Rigidbody objectToThrow;
+    private TrajectoryPredictor trajectoryPredictor;
+    #endregion
 
     void OnEnable()
     {

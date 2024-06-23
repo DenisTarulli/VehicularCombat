@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class EnemyProjectileThrow : MonoBehaviour
 {
-    TrajectoryPredictor trajectoryPredictor;
-
-    [SerializeField] private Rigidbody objectToThrow;
-
+    #region Members
+    [Header("Physics stats")]
     [SerializeField, Range(40f, 50f)] private float maxForce;
     [SerializeField, Range(5f, 15f)] private float minForce;
     [SerializeField, Range(15f, 40f)] private float startingForce;
-    [SerializeField] private float shootDistance;
     private float force;
 
+    [Header("Shooting")]
     [SerializeField] private float fireRate;
+    [SerializeField] private float shootDistance;
     private float nextTimeToFire;
 
+    [Header("References")]
+    [SerializeField] private Rigidbody objectToThrow;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform hitMarker;
     private Transform player;
+    private TrajectoryPredictor trajectoryPredictor;
+    #endregion
 
     void OnEnable()
     {

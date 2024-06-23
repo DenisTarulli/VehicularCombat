@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class EnemyTowerSpin : MonoBehaviour
 {
+    #region Members
+    [Header("Stats")]
     [SerializeField] private float spinSpeed;
     [SerializeField] private float spinThreshold;
     [SerializeField] private float aimingDistance;
 
+    [Header("References")]
     private Transform player;
     private EnemyMovement enemy;
+    #endregion
 
     private void Start()
     {
