@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 2656921889051578819}
   - component: {fileID: 525223247245995635}
   - component: {fileID: 7610279257644355408}
+  - component: {fileID: 1078296263843529975}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -311,7 +312,6 @@ MonoBehaviour:
   rotationSpeed: 70
   wheelRotationSpeed: 250
   wheelTurnRotationSpeed: 180
-  groundcheckRayMaxDistance: 0.65
   turnThreshold: 0.15
   chasingDistance: 35
   idleDistance: 150
@@ -321,6 +321,7 @@ MonoBehaviour:
   rightWheels:
   - {fileID: 7810903121012394787}
   - {fileID: 8762325998230720801}
+  groundcheckRayMaxDistance: 0.65
   boxSize: {x: 0.75, y: 0.5, z: 0.9}
 --- !u!114 &525223247245995635
 MonoBehaviour:
@@ -353,15 +354,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83bec0c9b7629174bbbbfaf35dbc7ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToThrow: {fileID: 895193375815479498, guid: c9f1450fdfda5384388d485e7d554f86,
-    type: 3}
   maxForce: 40
   minForce: 15
   startingForce: 20
-  shootDistance: 5
   fireRate: 0.3
+  shootDistance: 5
+  objectToThrow: {fileID: 895193375815479498, guid: c9f1450fdfda5384388d485e7d554f86,
+    type: 3}
   spawnPoint: {fileID: 4211661427723183510}
   hitMarker: {fileID: 687800651740965788}
+--- !u!114 &1078296263843529975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424914596609550241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b0acad2e8f19784facd2d795c9c401d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
 --- !u!1 &3075111988282517570
 GameObject:
   m_ObjectHideFlags: 0

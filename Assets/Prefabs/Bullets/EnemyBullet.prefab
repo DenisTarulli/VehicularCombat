@@ -239,6 +239,7 @@ MonoBehaviour:
   radius: 12
   force: 700
   damage: 100
+  damageRadius: 5.5
   tagToIgnore: Enemy
 --- !u!1 &9063777170357464003
 GameObject:

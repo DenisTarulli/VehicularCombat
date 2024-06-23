@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float force;
     [SerializeField] private float damage;
+    [SerializeField] private float damageRadius;
     [SerializeField] private string tagToIgnore;
 
     private void OnCollisionEnter(Collision collision)
@@ -28,6 +29,24 @@ public class Bullet : MonoBehaviour
         {
             if (nearbyObjects.TryGetComponent<Rigidbody>(out var rb) && !nearbyObjects.gameObject.CompareTag("Bullet"))
                 rb.AddExplosionForce(force, transform.position, radius);
+
+            if (nearbyObjects.TryGetComponent<PlayerCombat>(out var player))
+            {
+                float distance = Vector3.Distance(transform.position, player.transform.position);
+                if (distance < 1f)
+                    distance = 1f;
+                if (!(distance > damageRadius))                
+                    player.TakeDamage(damage * (1f / distance));
+            }
+
+            else if (nearbyObjects.TryGetComponent<EnemyCombat>(out var enemy))
+            {
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distance < 1f)
+                    distance = 1f;
+                if (!(distance > damageRadius))
+                    enemy.TakeDamage(damage * (1f / distance));
+            }
         }
 
         Destroy(gameObject);
