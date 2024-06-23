@@ -4,15 +4,57 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("References")]
+    [SerializeField] private GameObject pauseMenuUI;
+
+    [HideInInspector] public bool gameIsPaused = false;
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.gameIsOver)
+        {
+            if (gameIsPaused)
+            {
+                BackSound();
+                Resume();
+            }
+            else
+                Pause();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Resume()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        gameIsPaused = false;
+    }
+
+    public void Pause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+
+        pauseMenuUI.SetActive(true);
+        //AudioManager.instance.Play("Pause");
+        Time.timeScale = 0f;
+        gameIsPaused = true;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game...");
+        //AudioManager.instance.Play("BackUI");
+        Application.Quit();
+    }
+
+    public void ConfirmSound()
+    {
+        //AudioManager.instance.Play("ClickUI");
+    }
+
+    public void BackSound()
+    {
+        //AudioManager.instance.Play("BackUI");
     }
 }

@@ -39,7 +39,7 @@ public class ProjectileThrow : MonoBehaviour
         Predict();
         AdjustForce();
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Time.timeScale != 0f)
         {
             ThrowObject();
         }

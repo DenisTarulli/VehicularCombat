@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector] public bool gameIsOver;
     public static GameManager Instance { get; private set; }
 
     private void Awake()

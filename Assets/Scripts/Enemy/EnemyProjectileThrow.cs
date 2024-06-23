@@ -44,7 +44,7 @@ public class EnemyProjectileThrow : MonoBehaviour
         Predict();
         AdjustForce(0f);
 
-        if (Vector3.Distance(hitMarker.position, player.position) < shootDistance)
+        if (Vector3.Distance(hitMarker.position, player.position) < shootDistance && Time.timeScale != 0f)
             ThrowObject();
     }
 
