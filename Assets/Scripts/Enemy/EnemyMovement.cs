@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float groundcheckRayMaxDistance;
     [SerializeField] private float turnThreshold;
     [SerializeField] private float chasingDistance;
+    [SerializeField] private float idleDistance;
     [SerializeField] private GameObject[] leftWheels;
     [SerializeField] private GameObject[] rightWheels;
     [SerializeField] private Vector3 boxSize;
@@ -49,8 +50,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void SetState()
     {
-        if (Vector3.Distance(transform.position, player.position) >= chasingDistance)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer >= chasingDistance && distanceToPlayer < idleDistance)
             enemyState = EnemyState.Chasing;
+        else if (distanceToPlayer >= idleDistance)
+            enemyState = EnemyState.Idle;
         else
             enemyState = EnemyState.Stationary;
     }

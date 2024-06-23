@@ -1,5 +1,6 @@
 public enum EnemyState
 {
     Chasing,
-    Stationary
+    Stationary,
+    Idle
 }
