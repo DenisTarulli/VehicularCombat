@@ -8,10 +8,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float force;
     [SerializeField] private float damage;
+    [SerializeField] private string tagToIgnore;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player")) return;
+        if (collision.gameObject.CompareTag(tagToIgnore)) return;
 
         Explode();
     }

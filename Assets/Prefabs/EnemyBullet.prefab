@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 895193375815479498}
   - component: {fileID: 716623683012198621}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,6 +239,7 @@ MonoBehaviour:
   radius: 12
   force: 700
   damage: 100
+  tagToIgnore: Enemy
 --- !u!1 &9063777170357464003
 GameObject:
   m_ObjectHideFlags: 0

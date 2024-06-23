@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyTowerSpin : MonoBehaviour
 {
     [SerializeField] private float spinSpeed;
+    [SerializeField] private float spinThreshold;
+    [SerializeField] private float aimingDistance;
 
     private Transform player;
     private EnemyMovement enemy;
@@ -17,7 +19,8 @@ public class EnemyTowerSpin : MonoBehaviour
 
     private void Update()
     {
-        SpinTower(SetSpinDirection());
+        if (Vector3.Distance(transform.position, player.position) <= aimingDistance)
+            SpinTower(SetSpinDirection());
     }
 
     private void SpinTower(float direction)
@@ -110,24 +113,33 @@ public class EnemyTowerSpin : MonoBehaviour
 
     public float SameQuadrantRotation(Vector3 forward, Vector3 playerDir, int currentQuad)
     {
-        float rotation;
+        float rotation = 0f;
 
         float xFwdQuad = forward.x;
         float xPlayerQuad = playerDir.x;
 
+        float xDiff = Mathf.Abs(xFwdQuad - xPlayerQuad);
+
         if (currentQuad == 1 || currentQuad == 2)
         {
-            if (xFwdQuad < xPlayerQuad)
-                rotation = 1f;
-            else
-                rotation = -1f;
+            if (xDiff >= spinThreshold)
+            {
+                if (xFwdQuad < xPlayerQuad)
+                    rotation = 1f;
+                else
+                    rotation = -1f;
+            }
+
         }
         else
         {
-            if (xFwdQuad > xPlayerQuad)
-                rotation = 1f;
-            else
-                rotation = -1f;
+            if (xDiff >= spinThreshold)
+            {
+                if (xFwdQuad > xPlayerQuad)
+                    rotation = 1f;
+                else
+                    rotation = -1f;
+            }
         }
 
         return rotation;
