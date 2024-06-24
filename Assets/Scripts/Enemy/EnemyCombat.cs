@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class EnemyCombat : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     private float currentHealth;
+
+    public static event Action OnEnemyKill;
 
     private void Awake()
     {
@@ -18,6 +21,7 @@ public class EnemyCombat : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
+            OnEnemyKill?.Invoke();
             Destroy(gameObject);
         }
     }

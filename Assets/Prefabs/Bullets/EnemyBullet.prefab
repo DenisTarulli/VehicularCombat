@@ -238,8 +238,8 @@ MonoBehaviour:
   destroyDelay: 2
   radius: 11
   force: 700
-  damage: 100
-  damageRadius: 5.5
+  damage: 70
+  damageRadius: 5
   tagToIgnore: Enemy
 --- !u!1 &9063777170357464003
 GameObject:
@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3e3a059f245ae8f4283bcd52df867e71, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject winText;
     [SerializeField] private GameObject loseText;
     [SerializeField] private GameObject gameplayUI;
+    [SerializeField] private GameObject enemiesParent;
+    [SerializeField] private TextMeshProUGUI enemyCounter;
+    [HideInInspector] private int enemiesAmount;
     [HideInInspector] public bool gameIsOver;
     public static GameManager Instance { get; private set; }
 
@@ -18,11 +22,15 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             DestroyImmediate(Instance);
+
+        enemiesAmount = enemiesParent.transform.childCount;
     }
 
     private void Start()
     {
         Time.timeScale = 1f;
+
+        enemyCounter.text = $"Enemies left: {enemiesAmount:D2}";
     }
 
     private void OnDestroy()
@@ -56,5 +64,24 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Quitting...");
         Application.Quit();
+    }
+
+    private void UpdateEnemiesLeftCounter()
+    {
+        enemiesAmount--;
+        enemyCounter.text = $"Enemies left: {enemiesAmount:D2}";
+
+        if (enemiesAmount == 0)
+            GameOver();
+    }
+
+    private void OnEnable()
+    {
+        EnemyCombat.OnEnemyKill += UpdateEnemiesLeftCounter;
+    }
+
+    private void OnDisable()
+    {
+        EnemyCombat.OnEnemyKill -= UpdateEnemiesLeftCounter;
     }
 }
