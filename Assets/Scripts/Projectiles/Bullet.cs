@@ -33,16 +33,18 @@ public class Bullet : MonoBehaviour
             if (nearbyObjects.TryGetComponent<PlayerCombat>(out var player))
             {
                 float distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance < 1f)
+                distance /= 2f;
+                if (distance < 2f)
                     distance = 1f;
-                if (!(distance > damageRadius))                
+                if (!(distance > damageRadius))
                     player.TakeDamage(damage * (1f / distance));
             }
 
             else if (nearbyObjects.TryGetComponent<EnemyCombat>(out var enemy))
             {
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance < 1f)
+                distance /= 2f;
+                if (distance < 2f)
                     distance = 1f;
                 if (!(distance > damageRadius))
                     enemy.TakeDamage(damage * (1f / distance));

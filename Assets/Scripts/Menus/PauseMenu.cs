@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject gameplayUI;
 
     [HideInInspector] public bool gameIsPaused = false;
 
@@ -27,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
+        gameplayUI.SetActive(true);
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
@@ -35,6 +37,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
 
+        gameplayUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         //AudioManager.instance.Play("Pause");
         Time.timeScale = 0f;

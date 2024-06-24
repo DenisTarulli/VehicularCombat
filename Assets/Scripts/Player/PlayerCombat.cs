@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
+    [SerializeField] private float invulnerabilityTime;
     private float currentHealth;
     private bool canTakeDamage;
 
@@ -28,12 +29,23 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!canTakeDamage) return;
 
+        StartCoroutine(nameof(Invulnerability));
+
         currentHealth -= damageToTake;
         OnHurt?.Invoke(currentHealth);
 
         if (currentHealth <= 0f)
         {
-            // a
+            GameManager.Instance.GameOver();
         }
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        canTakeDamage = false;
+
+        yield return new WaitForSeconds(invulnerabilityTime);
+
+        canTakeDamage = true;
     }
 }
