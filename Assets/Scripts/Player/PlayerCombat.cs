@@ -8,6 +8,8 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private float invulnerabilityTime;
+    [SerializeField] private GameObject damagedEffect;
+    [SerializeField] private GameObject highDamagedEffect;
     private float currentHealth;
     private bool canTakeDamage;
 
@@ -34,10 +36,20 @@ public class PlayerCombat : MonoBehaviour
         currentHealth -= damageToTake;
         OnHurt?.Invoke(currentHealth);
 
+        DamagedVisualEffect();
+
         if (currentHealth <= 0f)
         {
             GameManager.Instance.GameOver();
         }
+    }
+
+    private void DamagedVisualEffect()
+    {
+        if (currentHealth <= (maxHealth / 3f))
+            highDamagedEffect.SetActive(true);
+        else if (currentHealth <= (maxHealth * 2f/3f))
+            damagedEffect.SetActive(true);
     }
 
     private IEnumerator Invulnerability()
